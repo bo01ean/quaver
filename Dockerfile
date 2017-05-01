@@ -18,7 +18,7 @@ RUN apt-get install -y r-base r-base-dev octave ed libcurl4-openssl-dev libssl-d
 ## Install the R libraries
 RUN unzip /gbm.zip
 RUN Rscript /go.R
-RUN R CMD build /gbm
+RUN R CMD build ./gbm
 RUN R CMD INSTALL ./gbm_2.1.3.tar.gz
 
 ## Install octave and octave-dev (for building stuff)
