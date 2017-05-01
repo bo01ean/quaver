@@ -2,11 +2,13 @@ FROM ubuntu:latest
 MAINTAINER nathan.trujillo@intensity.com
 WORKDIR /app
 
+## Add in custom scripts
 ADD ./gbm.zip /gbm.zip
 ADD ./go.R /go.R
 ADD ./go.m /go.m
 
 RUN apt-get update
+
 ## Install R
 ## https://www.datascienceriot.com/how-to-install-r-in-linux-ubuntu-16-04-xenial-xerus/kris/
 RUN echo "deb http://cran.rstudio.com/bin/linux/ubuntu xenial/" | tee -a /etc/apt/sources.list
@@ -34,8 +36,8 @@ RUN ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
 # Node JS 6
 RUN curl -sL https://deb.nodesource.com/setup_6.x -o /nodesource_setup.sh
 RUN bash /nodesource_setup.sh
-
-RUN ln -s "$(which nodejs)" /usr/bin/node
+RUN apt-get install -y nodejs
+#RUN ln -s "$(which nodejs)" /usr/bin/node
 
 RUN apt-get install -y sudo
 ADD ./addUser.sh /addUser.sh
